@@ -1,3 +1,51 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+@layer base {
+  :root {
+    color-scheme: dark;
+  }
+  .light {
+    color-scheme: light;
+  }
+  html, body, #root {
+    height: 100%;
+  }
+  body {
+    @apply bg-background text-foreground font-sans antialiased;
+  }
+}
+
+@layer components {
+  .container-app {
+    @apply max-w-6xl mx-auto px-4 sm:px-6 lg:px-8;
+  }
+  .card {
+    @apply bg-background-soft rounded-xl border border-white/5 shadow-card shadow-black/40 hover:shadow-black/60 transition-shadow;
+  }
+  .btn {
+    @apply inline-flex items-center justify-center gap-2 rounded-lg px-4 py-2 text-sm font-medium transition-colors focus:outline-none focus:ring-2 focus:ring-offset-0 disabled:opacity-50 disabled:pointer-events-none;
+  }
+  .btn-primary {
+    @apply btn bg-primary-600 hover:bg-primary-500 text-white;
+  }
+  .btn-secondary {
+    @apply btn bg-background-raised hover:bg-background-soft text-foreground border border-white/10;
+  }
+  .input {
+    @apply w-full rounded-lg bg-background-soft border border-white/10 px-3 py-2 text-foreground placeholder-foreground-muted focus:outline-none focus:ring-2 focus:ring-primary-600;
+  }
+  .label {
+    @apply text-sm text-foreground-muted;
+  }
+}
+
+/* Light theme overrides */
+@layer utilities {
+  .light body { @apply bg-white text-zinc-900; }
+  .light .card { @apply bg-white border-zinc-200 shadow; }
+  .light .btn-secondary { @apply bg-white text-zinc-800 border-zinc-200 hover:bg-zinc-50; }
+  .light .input { @apply bg-white border-zinc-200 text-zinc-900 placeholder-zinc-400; }
+  .light header { @apply bg-white/80; }
+}
